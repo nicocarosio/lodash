@@ -101,17 +101,29 @@ const _ = {
     // Implement _.dropWhile()
 
     dropWhile(array, predicateFunction){
-      //https://docs.python.org/3.5/library/itertools.html#itertools.dropwhile
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
 
-      let newArray =[];
+        let dropNumber = array.findIndex(function(element, index) {
+          return !predicateFunction(element, index, array)
+          });
+          let droppedArray = this.drop(array, dropNumber);
+          return droppedArray;
+        },
 
-      array.forEach(item => newArray = predicateFunction(item, array.indexOf(item), array) );
-      //INCOMPLETO....
+    chunk(array, size){
 
-      return newArray;
+      //https://stackoverflow.com/questions/7273668/how-to-split-a-long-array-into-smaller-arrays-with-javascript#7273794
+      var chunks = [];
+
+      array.forEach((item)=>{
+        if(!chunks.length || chunks[chunks.length-1].length == size)
+        chunks.push([]);
+
+        chunks[chunks.length-1].push(item);
+      });
+
+    return chunks;
     }
-
-
 };
 
 
